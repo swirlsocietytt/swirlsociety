@@ -280,3 +280,28 @@ footer {
     border:1px solid #ddd;
 
 }
+#order-totals{
+    background:#faf7f2;
+    padding:20px;
+    border-radius:12px;
+    margin:25px 0;
+}
+
+#order-totals p{
+    display:flex;
+    justify-content:space-between;
+    margin:10px 0;
+}
+
+#order-totals h3{
+    display:flex;
+    justify-content:space-between;
+    margin-top:15px;
+    color:#7a3e12;
+}
+
+#order-totals hr{
+    margin:15px 0;
+    border:none;
+    border-top:1px solid #ddd;
+}
