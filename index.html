@@ -271,7 +271,77 @@ Total: $0
 <button class="checkout-button">
 Complete Order
 </button>
+<div id="checkout-details">
 
+<h3>Order Details</h3>
+
+
+<label>
+Date Needed:
+</label>
+
+<input type="date" id="order-date">
+
+
+
+<label>
+Pickup or Delivery:
+</label>
+
+<select id="order-type">
+
+<option value="Pickup">
+Pickup
+</option>
+
+<option value="Delivery">
+Delivery
+</option>
+
+</select>
+
+
+
+<label>
+Preferred Time:
+</label>
+
+<select id="order-time">
+
+<option>10:00 AM</option>
+<option>11:00 AM</option>
+<option>12:00 PM</option>
+<option>1:00 PM</option>
+<option>2:00 PM</option>
+<option>3:00 PM</option>
+<option>4:00 PM</option>
+<option>5:00 PM</option>
+<option>6:00 PM</option>
+
+</select>
+
+
+
+<div id="rush-warning" style="display:none;">
+
+<p>
+This is a rush order. Rush orders require full payment before production begins.
+</p>
+
+
+<label>
+
+<input type="checkbox" id="rush-confirm">
+
+I understand this is a rush order and full payment is required to confirm my order.
+
+</label>
+
+
+</div>
+
+
+</div>
 
 </section>
 
