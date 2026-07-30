@@ -448,31 +448,7 @@ checkoutButton.addEventListener("click", function(){
 
 
 
-    orderSummary +=
-
-
-    "\nDate Needed: " +
-
-    orderDate +
-
-
-
-    "\nTime: " +
-
-    orderTime +
-
-
-
-    "\nOrder Type: " +
-
-    orderType +
-
-
-
-    "\nTotal: $" +
-
-    total;
-
+ orderSummary += "\nTotal: $" + total;
 
 
 
