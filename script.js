@@ -479,14 +479,17 @@ checkoutButton.addEventListener("click", function(){
 
 
 
-    const formLink =
+  const formLink =
 
+"https://docs.google.com/forms/d/e/1FAIpQLSchQS7O81X_frvJ55CgGY2FHhITIOL2kM0c5r2uiqQBhx0qWQ/viewform?usp=pp_url"
 
-    "https://docs.google.com/forms/d/e/1FAIpQLSchQS7O81X_frvJ55CgGY2FHhITIOL2kM0c5r2uiqQBhx0qWQ/viewform?usp=pp_url&entry.1365466397="
++ "&entry.1365466397=" + encodeURIComponent(orderSummary)
 
++ "&entry.447666136=" + encodeURIComponent(orderDate)
 
++ "&entry.685296491=" + encodeURIComponent(orderType)
 
-    + encodeURIComponent(orderSummary);
++ "&entry.227079360=" + encodeURIComponent(orderTime);
 
 
 
