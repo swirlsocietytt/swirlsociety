@@ -251,3 +251,32 @@ footer {
     padding: 15px 0;
     border-bottom: 1px solid #eee;
 }
+#checkout-details {
+
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    max-width: 500px;
+    margin: 30px auto;
+
+}
+
+
+#checkout-details label {
+
+    display:block;
+    margin-top:15px;
+    margin-bottom:8px;
+
+}
+
+
+#checkout-details input,
+#checkout-details select {
+
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #ddd;
+
+}
