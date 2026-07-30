@@ -143,3 +143,36 @@ function updateCart() {
 
 
 }
+const checkoutButton = document.querySelector(".checkout-button");
+
+
+checkoutButton.addEventListener("click", function() {
+
+
+    let orderSummary = "";
+
+
+    cart.forEach(item => {
+
+        orderSummary += 
+        item.name + " - " + item.option + " - $" + item.price + "\n";
+
+    });
+
+
+    orderSummary += "\nTotal: $" + cart.reduce(
+        (sum, item) => sum + item.price,
+        0
+    );
+
+
+    const formLink =
+    "https://docs.google.com/forms/d/e/1FAIpQLSchQS7O81X_frvJ55CgGY2FHhITIOL2kM0c5r2uiqQBhx0qWQ/viewform?usp=pp_url&entry.1365466397="
+    + encodeURIComponent(orderSummary);
+
+
+
+    window.open(formLink, "_blank");
+
+
+});
