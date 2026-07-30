@@ -67,3 +67,47 @@ footer {
     background: #3b2418;
     color: white;
 }
+.hero {
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+.hero-content {
+    max-width: 700px;
+}
+
+
+.hero h1 {
+    font-family: Georgia, serif;
+    font-size: 70px;
+    color: #7a3e12;
+    margin-bottom: 10px;
+}
+
+
+.hero h2 {
+    font-size: 32px;
+    font-weight: normal;
+    color: #3b2418;
+}
+
+
+.hero p {
+    font-size: 20px;
+    margin: 30px auto;
+}
+
+
+.button {
+    display: inline-block;
+    padding: 15px 35px;
+    background-color: #7a3e12;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 18px;
+}
