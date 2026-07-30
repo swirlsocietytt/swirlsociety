@@ -185,3 +185,18 @@ footer {
     font-size: 22px;
     color: #3b2418;
 }
+.add-to-cart {
+    margin-top: 20px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background-color: #7a3e12;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+.add-to-cart:hover {
+    background-color: #3b2418;
+}
