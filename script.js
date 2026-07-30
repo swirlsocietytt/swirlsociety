@@ -2,18 +2,24 @@
 
 let cart = [];
 
+
 const buttons = document.querySelectorAll(".add-to-cart");
 
 const cartContainer = document.getElementById("cart");
 
 const cartTotal = document.getElementById("cart-total");
 
+const checkoutButton = document.querySelector(".checkout-button");
 
-// Add items to cart
+
+
+
+// ADD TO CART
 
 buttons.forEach(button => {
 
-    button.addEventListener("click", function() {
+
+    button.addEventListener("click", function(){
 
 
         const productCard = this.closest(".product-card");
@@ -28,12 +34,10 @@ buttons.forEach(button => {
 
 
 
-        // Check if product has size options
-
         const option = productCard.querySelector(".product-option");
 
 
-        if (option) {
+        if(option){
 
             productPrice = Number(option.value);
 
@@ -44,14 +48,15 @@ buttons.forEach(button => {
 
 
             productPrice = Number(
-                productCard
-                .querySelector("strong")
+                productCard.querySelector("strong")
                 .textContent
-                .replace("$", "")
+                .replace("$","")
             );
 
+            productOption = "Standard";
 
         }
+
 
 
 
@@ -61,7 +66,9 @@ buttons.forEach(button => {
 
             option: productOption,
 
-            price: productPrice
+            price: productPrice,
+
+            quantity: 1
 
         });
 
@@ -78,9 +85,11 @@ buttons.forEach(button => {
 
 
 
-// Display cart
 
-function updateCart() {
+
+// DISPLAY CART
+
+function updateCart(){
 
 
     cartContainer.innerHTML = "";
@@ -90,51 +99,95 @@ function updateCart() {
 
 
 
-    if (cart.length === 0) {
+    if(cart.length === 0){
 
 
         cartContainer.innerHTML =
         "<p>Your cart is currently empty.</p>";
 
 
+        cartTotal.textContent = "Total: $0";
+
+
+        return;
+
     }
 
 
 
-    cart.forEach(item => {
+
+    cart.forEach((item,index)=>{
 
 
-        total += item.price;
+        let subtotal = item.price * item.quantity;
 
 
-
-        const cartItem = document.createElement("div");
-
-
-        cartItem.className = "cart-item";
+        total += subtotal;
 
 
 
-        cartItem.innerHTML = `
+        let div = document.createElement("div");
 
-            <span>
-                ${item.name}
-                <br>
-                ${item.option}
-            </span>
 
-            <span>
-                $${item.price}
-            </span>
+        div.className = "cart-item";
+
+
+
+        div.innerHTML = `
+
+
+        <div>
+
+        <strong>${item.name}</strong>
+
+        <br>
+
+        ${item.option}
+
+        <br>
+
+        $${item.price}
+
+        </div>
+
+
+
+        <div>
+
+        <button onclick="changeQuantity(${index}, -1)">
+        -
+        </button>
+
+
+        ${item.quantity}
+
+
+        <button onclick="changeQuantity(${index}, 1)">
+        +
+        </button>
+
+
+        <br>
+
+
+        <button onclick="removeItem(${index})">
+        Remove
+        </button>
+
+
+        </div>
+
 
         `;
 
 
 
-        cartContainer.appendChild(cartItem);
+        cartContainer.appendChild(div);
+
 
 
     });
+
 
 
 
@@ -142,32 +195,117 @@ function updateCart() {
     "Total: $" + total;
 
 
+
 }
-const checkoutButton = document.querySelector(".checkout-button");
 
 
-checkoutButton.addEventListener("click", function() {
+
+
+
+
+// CHANGE QUANTITY
+
+function changeQuantity(index, amount){
+
+
+    cart[index].quantity += amount;
+
+
+
+    if(cart[index].quantity <= 0){
+
+        cart.splice(index,1);
+
+    }
+
+
+
+    updateCart();
+
+
+}
+
+
+
+
+
+
+
+// REMOVE ITEM
+
+function removeItem(index){
+
+
+    cart.splice(index,1);
+
+
+    updateCart();
+
+
+}
+
+
+
+
+
+
+
+// CHECKOUT
+
+checkoutButton.addEventListener("click", function(){
+
+
+    if(cart.length === 0){
+
+        alert("Your cart is empty. Please add items before checking out.");
+
+        return;
+
+    }
+
 
 
     let orderSummary = "";
 
 
-    cart.forEach(item => {
 
-        orderSummary += 
-        item.name + " - " + item.option + " - $" + item.price + "\n";
+    let total = 0;
+
+
+
+    cart.forEach(item=>{
+
+
+        let subtotal = item.price * item.quantity;
+
+
+        total += subtotal;
+
+
+
+        orderSummary +=
+        item.name +
+        " - " +
+        item.option +
+        " x" +
+        item.quantity +
+        " - $" +
+        subtotal +
+        "\n";
+
 
     });
 
 
-    orderSummary += "\nTotal: $" + cart.reduce(
-        (sum, item) => sum + item.price,
-        0
-    );
+
+    orderSummary += "\nTotal: $" + total;
+
 
 
     const formLink =
+
     "https://docs.google.com/forms/d/e/1FAIpQLSchQS7O81X_frvJ55CgGY2FHhITIOL2kM0c5r2uiqQBhx0qWQ/viewform?usp=pp_url&entry.1365466397="
+
     + encodeURIComponent(orderSummary);
 
 
