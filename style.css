@@ -139,3 +139,49 @@ footer {
     margin-top: 20px;
     font-size: 22px;
 }
+.product-image {
+    height: 220px;
+    background-color: #f3e4d3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    font-style: italic;
+    color: #7a3e12;
+}
+
+
+.product-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+
+.product-card h3 {
+    font-family: Georgia, serif;
+    color: #7a3e12;
+    font-size: 24px;
+}
+
+
+.product-card p {
+    font-size: 16px;
+}
+
+
+.product-card strong {
+    display: block;
+    margin-top: 20px;
+    font-size: 22px;
+    color: #3b2418;
+}
