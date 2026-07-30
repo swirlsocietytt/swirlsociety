@@ -3,7 +3,7 @@
 let cart = [];
 
 
-const buttons = document.querySelectorAll(".add-to-cart");
+const productContainer = document.getElementById("product-container");
 
 const cartContainer = document.getElementById("cart");
 
