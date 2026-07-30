@@ -200,3 +200,30 @@ footer {
 .add-to-cart:hover {
     background-color: #3b2418;
 }
+#cart {
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    max-width: 500px;
+    margin: 30px auto;
+}
+
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+
+.checkout-button {
+    margin-top: 25px;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 30px;
+    background-color: #7a3e12;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
