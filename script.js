@@ -1,7 +1,6 @@
-// Swirl Society Cart
+// Swirl Society Cart System
 
 let cart = [];
-
 
 const buttons = document.querySelectorAll(".add-to-cart");
 
@@ -10,36 +9,47 @@ const cartContainer = document.getElementById("cart");
 const cartTotal = document.getElementById("cart-total");
 
 
+// Add items to cart
 
 buttons.forEach(button => {
 
-
-    button.addEventListener("click", () => {
-
-
-        const productCard = button.parentElement;
+    button.addEventListener("click", function() {
 
 
-        const productName = productCard.querySelector("h3").innerText;
+        const productCard = this.closest(".product-card");
 
 
-        let price;
+        const productName = productCard.querySelector("h3").textContent;
 
+
+        let productPrice;
+
+        let productOption = "";
+
+
+
+        // Check if product has size options
 
         const option = productCard.querySelector(".product-option");
 
 
         if (option) {
 
-            price = Number(option.value);
+            productPrice = Number(option.value);
+
+            productOption = option.options[option.selectedIndex].text;
+
 
         } else {
 
-            price = Number(
-                productCard.querySelector("strong")
-                .innerText
-                .replace("$","")
+
+            productPrice = Number(
+                productCard
+                .querySelector("strong")
+                .textContent
+                .replace("$", "")
             );
+
 
         }
 
@@ -49,7 +59,9 @@ buttons.forEach(button => {
 
             name: productName,
 
-            price: price
+            option: productOption,
+
+            price: productPrice
 
         });
 
@@ -66,7 +78,9 @@ buttons.forEach(button => {
 
 
 
-function updateCart(){
+// Display cart
+
+function updateCart() {
 
 
     cartContainer.innerHTML = "";
@@ -76,39 +90,7 @@ function updateCart(){
 
 
 
-    cart.forEach(item => {
-
-
-        total += item.price;
-
-
-
-        let div = document.createElement("div");
-
-
-        div.classList.add("cart-item");
-
-
-
-        div.innerHTML = `
-
-        <span>${item.name}</span>
-
-        <span>$${item.price}</span>
-
-        `;
-
-
-
-        cartContainer.appendChild(div);
-
-
-
-    });
-
-
-
-    if(cart.length === 0){
+    if (cart.length === 0) {
 
 
         cartContainer.innerHTML =
@@ -119,9 +101,45 @@ function updateCart(){
 
 
 
-    cartTotal.innerText =
-    "Total: $" + total;
+    cart.forEach(item => {
 
+
+        total += item.price;
+
+
+
+        const cartItem = document.createElement("div");
+
+
+        cartItem.className = "cart-item";
+
+
+
+        cartItem.innerHTML = `
+
+            <span>
+                ${item.name}
+                <br>
+                ${item.option}
+            </span>
+
+            <span>
+                $${item.price}
+            </span>
+
+        `;
+
+
+
+        cartContainer.appendChild(cartItem);
+
+
+    });
+
+
+
+    cartTotal.textContent =
+    "Total: $" + total;
 
 
 }
