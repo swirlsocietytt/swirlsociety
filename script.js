@@ -18,8 +18,7 @@ const checkoutButton = document.querySelector(".checkout-button");
 
 buttons.forEach(button => {
 
-
-    button.addEventListener("click", function(){
+    button.addEventListener("click", function() {
 
 
         const productCard = this.closest(".product-card");
@@ -37,7 +36,9 @@ buttons.forEach(button => {
         const option = productCard.querySelector(".product-option");
 
 
-        if(option){
+
+        if(option) {
+
 
             productPrice = Number(option.value);
 
@@ -52,6 +53,7 @@ buttons.forEach(button => {
                 .textContent
                 .replace("$","")
             );
+
 
             productOption = "Standard";
 
@@ -87,6 +89,7 @@ buttons.forEach(button => {
 
 
 
+
 // DISPLAY CART
 
 function updateCart(){
@@ -112,6 +115,7 @@ function updateCart(){
         return;
 
     }
+
 
 
 
@@ -153,6 +157,7 @@ function updateCart(){
 
 
         <div>
+
 
         <button onclick="changeQuantity(${index}, -1)">
         -
@@ -197,6 +202,7 @@ function updateCart(){
 
 
 }
+
 
 
 
@@ -255,9 +261,14 @@ function removeItem(index){
 checkoutButton.addEventListener("click", function(){
 
 
+
     if(cart.length === 0){
 
-        alert("Your cart is empty. Please add items before checking out.");
+
+        alert(
+        "Your cart is empty. Please add items before checking out."
+        );
+
 
         return;
 
@@ -265,52 +276,238 @@ checkoutButton.addEventListener("click", function(){
 
 
 
+
+
+    const orderDate =
+    document.getElementById("order-date").value;
+
+
+
+    const orderType =
+    document.getElementById("order-type").value;
+
+
+
+    const orderTime =
+    document.getElementById("order-time").value;
+
+
+
+    const rushWarning =
+    document.getElementById("rush-warning");
+
+
+
+    const rushConfirm =
+    document.getElementById("rush-confirm");
+
+
+
+
+
+
+    if(!orderDate){
+
+
+        alert(
+        "Please select your required date."
+        );
+
+
+        return;
+
+    }
+
+
+
+
+
+
+    const today = new Date();
+
+
+    const selectedDate = new Date(orderDate);
+
+
+
+    const difference = Math.ceil(
+
+        (selectedDate - today)
+
+        /
+
+        (1000 * 60 * 60 * 24)
+
+    );
+
+
+
+
+
+
+
+    // LESS THAN 3 DAYS
+
+    if(difference < 3){
+
+
+        alert(
+        "Orders require at least 3 days notice. Please contact Swirl Society directly for availability."
+        );
+
+
+        return;
+
+
+    }
+
+
+
+
+
+
+
+    // RUSH ORDER
+
+    if(difference < 7){
+
+
+        rushWarning.style.display = "block";
+
+
+
+        if(!rushConfirm.checked){
+
+
+            alert(
+            "This is a rush order. Please confirm that you understand full payment is required."
+            );
+
+
+            return;
+
+
+        }
+
+
+    }
+
+
+
+
+
+
+
     let orderSummary = "";
 
-
-
     let total = 0;
+
+
+
 
 
 
     cart.forEach(item=>{
 
 
-        let subtotal = item.price * item.quantity;
+        let subtotal =
+        item.price * item.quantity;
+
 
 
         total += subtotal;
 
 
 
+
         orderSummary +=
+
+
         item.name +
+
         " - " +
+
         item.option +
+
         " x" +
+
         item.quantity +
+
         " - $" +
+
         subtotal +
+
         "\n";
+
 
 
     });
 
 
 
-    orderSummary += "\nTotal: $" + total;
+
+
+
+    orderSummary +=
+
+
+    "\nDate Needed: " +
+
+    orderDate +
+
+
+
+    "\nTime: " +
+
+    orderTime +
+
+
+
+    "\nOrder Type: " +
+
+    orderType +
+
+
+
+    "\nTotal: $" +
+
+    total;
+
+
+
+
 
 
 
     const formLink =
 
+
     "https://docs.google.com/forms/d/e/1FAIpQLSchQS7O81X_frvJ55CgGY2FHhITIOL2kM0c5r2uiqQBhx0qWQ/viewform?usp=pp_url&entry.1365466397="
 
+
+
     + encodeURIComponent(orderSummary);
+
+
+
+
 
 
 
     window.open(formLink, "_blank");
 
 
+
 });
+
+
+
+
+
+
+
+// MAKE BUTTON FUNCTIONS AVAILABLE
+
+window.changeQuantity = changeQuantity;
+
+window.removeItem = removeItem;
